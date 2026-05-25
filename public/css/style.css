@@ -1,0 +1,321 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+  direction: rtl;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #4a90d9 0%, #5b9fe8 40%, #7ab3f0 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow-x: hidden;
+  padding: 24px 16px;
+  margin: 0;
+}
+
+/* Decorative Circles */
+.circle-tl {
+  position: absolute;
+  top: -64px;
+  left: -64px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+}
+
+.circle-br {
+  position: absolute;
+  bottom: -48px;
+  right: -48px;
+  width: 176px;
+  height: 176px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.10);
+  pointer-events: none;
+}
+
+/* Dot Grids */
+.dots {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(4, 4px);
+  gap: 10px;
+  pointer-events: none;
+}
+
+.dots.dots-left {
+  top: 80px;
+  left: 20px;
+}
+
+.dots.dots-right {
+  bottom: 80px;
+  right: 20px;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* Logo */
+.logo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  z-index: 1;
+}
+
+.logo-icon {
+  width: 64px;
+  height: 64px;
+  background: #ffffff;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.logo-icon svg {
+  width: 36px;
+  height: 36px;
+}
+
+.logo-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.logo-sub {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 4px;
+}
+
+/* Card */
+.card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(60, 100, 180, 0.15);
+  width: 100%;
+  max-width: 440px;
+  padding: 30px 28px 24px;
+  z-index: 1;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a2340;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Form Fields */
+.field-group {
+  margin-bottom: 14px;
+}
+
+.field-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2d3a55;
+  margin-bottom: 8px;
+  text-align: right;
+}
+
+.input-wrap {
+  position: relative;
+}
+
+.input-wrap input {
+  width: 100%;
+  height: 48px;
+  background: #f1f5fc;
+  border: none;
+  border-radius: 12px;
+  padding: 0 48px 0 48px;
+  font-size: 14px;
+  color: #1a2340;
+  text-align: right;
+  direction: rtl;
+  outline: none;
+  transition: background 0.2s;
+  font-family: inherit;
+}
+
+.input-wrap.no-toggle input {
+  padding-right: 16px;
+}
+
+.input-wrap input:focus {
+  background: #e6edf9;
+}
+
+.input-wrap input::placeholder {
+  color: #a0aec0;
+}
+
+.icon-left {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #4a8de8;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.icon-left svg {
+  width: 20px;
+  height: 20px;
+}
+
+.toggle-pass {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #a0aec0;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.toggle-pass:hover {
+  color: #4a8de8;
+}
+
+.toggle-pass svg {
+  width: 20px;
+  height: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Options Row */
+.row-opts {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  direction: rtl;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #2d3a55;
+  cursor: pointer;
+}
+
+.remember input[type="checkbox"] {
+  width: 17px;
+  height: 17px;
+  accent-color: #4a8de8;
+  cursor: pointer;
+}
+
+.forgot {
+  font-size: 14px;
+  color: #4a8de8;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.forgot:hover {
+  color: #3a7bd5;
+}
+
+/* Login Button */
+.btn-login {
+  width: 100%;
+  height: 46px;
+  background: #4a8de8;
+  border: none;
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.5px;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn-login:hover {
+  background: #3a7bd5;
+}
+
+.btn-login:active {
+  transform: scale(0.98);
+}
+
+/* Footer */
+.footer {
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.80);
+  font-size: 13px;
+  z-index: 1;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  body {
+    padding: 16px 12px;
+  }
+
+  .card {
+    padding: 24px 18px 20px;
+  }
+
+  .logo-wrap {
+    margin-bottom: 16px;
+  }
+
+  .card-title {
+    margin-bottom: 16px;
+  }
+
+  .field-group {
+    margin-bottom: 12px;
+  }
+
+  .row-opts {
+    margin-bottom: 14px;
+  }
+
+  .logo-title {
+    font-size: 24px;
+  }
+}
