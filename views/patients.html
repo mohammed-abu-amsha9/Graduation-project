@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>عيادة طبية - المرضى</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../public/css/style_join.css" />
+  </head>
+
+  <body class="bg-[#F5F7FB] text-[#0F172A]">
+    <!-- القائمة الجانبية -->
+    <!-- Sidebar -->
+    <aside
+      id="sidebar"
+      class="sidebar fixed right-0 top-0 h-screen w-[265px] bg-white border-l border-gray-200 shadow-sm z-50 overflow-y-auto"
+    >
+      <!-- Logo -->
+      <div class="h-[92px] flex items-center justify-between px-5 border-b">
+        <div class="flex items-center gap-3">
+          <div
+            class="logo rounded-xl bg-[#494BE1] flex items-center justify-center text-white text-xl"
+          >
+            <i class="fa-solid fa-stethoscope"></i>
+          </div>
+
+          <div class="logo-text">
+            <h2 class="font-bold text-lg">عيادة طبية</h2>
+            <p class="text-sm text-[#AEAEAF]">Clinic Pro</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toggle Button -->
+      <button
+        onclick="toggleSidebar()"
+        class="absolute -right-2 top-[75px] w-8 h-8 rounded-full bg-white border shadow flex items-center justify-center text-gray-500"
+      >
+        <i class="fa-solid fa-angle-left"></i>
+      </button>
+
+      <!-- Menu -->
+      <nav class="p-4 space-y-3">
+        <a
+          href="control_panel.html"
+          class="menu-link "
+        >
+          <span class="text-xl"><i class="fa-solid fa-layer-group"></i></span>
+          <span class="menu-text font-semibold">لوحة التحكم</span>
+        </a>
+
+        <a href="patients.html" class="menu-link text-white  bg-gradient-to-r from-[#818CF8] to-[#4F46E5] to-[#4338CA]">
+          <span class="text-xl"><i class="fa-solid fa-user-group"></i></span>
+          <span class="menu-text">المرضى</span>
+        </a>
+
+        <a href="appointments.html" class="menu-link">
+          <span class="text-xl"><i class="fa-regular fa-calendar"></i></span>
+          <span class="menu-text">المواعيد</span>
+        </a>
+
+        <a href="visits.html" class="menu-link">
+          <span class="text-xl"><i class="fa-solid fa-stethoscope"></i></span>
+          <span class="menu-text">الزيارات</span>
+        </a>
+
+        <a href="invoices.html" class="menu-link">
+          <span class="text-xl"><i class="fa-solid fa-sack-dollar"></i></span>
+          <span class="menu-text">الفواتير</span>
+        </a>
+
+        <a href="pharmacy.html" class="menu-link">
+          <span class="text-xl"><i class="fa-solid fa-capsules"></i></span>
+          <span class="menu-text">الصيدلية</span>
+        </a>
+
+        <a href="laboratory.html" class="menu-link">
+          <span class="text-xl"><i class="fa-solid fa-flask"></i></span>
+          <span class="menu-text">المختبر</span>
+        </a>
+
+        <a href="radiology.html" class="menu-link">
+          <span class="text-xl"><i class="fa-solid fa-x-ray"></i></span>
+          <span class="menu-text">الأشعة</span>
+        </a>
+
+        <a href="users.html" class="menu-link">
+          <span class="text-xl"><i class="fa-solid fa-user-gear"></i></span>
+          <span class="menu-text">المستخدمين</span>
+        </a>
+
+        <a href="settings.html" class="menu-link">
+          <span class="text-xl"><i class="fa-solid fa-gear"></i></span>
+          <span class="menu-text">الإعدادات</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- القائمة العلوية -->
+    <header
+      id="topbar"
+      class="main fixed top-0 left-0 right-[265px] h-[80px] bg-white border-b border-gray-200 flex items-center justify-between px-8 z-40"
+    >
+      <!-- جهة اليمين -->
+      <div class="w-[520px]">
+        <div class="relative">
+          <input
+            type="text"
+            placeholder="بحث عن مريض، موعد، أو فاتورة..."
+            class="w-full rounded-xl p-3 pr-12 bg-[#F0F5FF] outline-none text-gray-500 border-2 border-transparent focus:bg-white focus:border-[#F0F5FF] transition-all duration-300"
+          />
+
+          <span
+            class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </span>
+        </div>
+      </div>
+
+      <!-- جهة اليسار -->
+      <div class="flex items-center gap-6">
+        <button class="text-1xl text-gray-500">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="relative">
+          <button class="text-1xl text-gray-500">
+            <i class="fa-regular fa-bell"></i>
+          </button>
+          <span
+            class="absolute -top-2 -right-2 bg-[#5B7FE8] text-white text-xs w-4 h-4 rounded-full flex items-center justify-center"
+          >
+            2
+          </span>
+        </div>
+
+        <div class="h-10 w-px bg-gray-200"></div>
+
+        <a href="login.html" class="flex items-center gap-3 cursor-pointer">
+          <img src="https://i.pravatar.cc/60" class="w-10 h-10 rounded-full" />
+
+          <div>
+            <h3 class="font-medium">د. أحمد محمد</h3>
+            <p class="text-sm text-gray-500">مدير النظام</p>
+          </div>
+        </a>
+      </div>
+    </header>
+
+    <!-- المحتوى -->
+    <main id="content" class="main pt-[120px] pr-[310px] px-8">
+      <h1 class="text-4xl font-bold">المرضى</h1>
+      <p class="text-gray-500 mt-3">مرحباً بك في نظام إدارة العيادة</p>
+    </main>
+
+    <script>
+      const sidebar = document.getElementById("sidebar");
+      const topbar = document.getElementById("topbar");
+      const content = document.getElementById("content");
+
+      function toggleSidebar() {
+        sidebar.classList.toggle("closed");
+
+        if (sidebar.classList.contains("closed")) {
+          // عند الإغلاق
+          sidebar.style.width = "80px";
+          topbar.style.right = "80px";
+          content.style.paddingRight = "110px";
+        } else {
+          // عند الفتح
+          sidebar.style.width = "265px";
+          topbar.style.right = "265px";
+          content.style.paddingRight = "295px";
+        }
+      }
+    </script>
+    <script>
+      const menuLinks = document.querySelectorAll(".menu-link");
+
+      menuLinks.forEach((link) => {
+        link.addEventListener("click", function () {
+          // حذف الألوان من الجميع
+          menuLinks.forEach((item) => {
+            item.classList.remove(
+              "text-white",
+              "bg-gradient-to-r",
+              "from-[#818CF8]",
+              "to-[#4F46E5]",
+              "to-[#4338CA]",
+            );
+          });
+
+          // إضافة اللون للعنصر الحالي
+          this.classList.add(
+            "text-white",
+            "bg-gradient-to-r",
+            "from-[#818CF8]",
+            "to-[#4F46E5]",
+            "to-[#4338CA]",
+          );
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -101,11 +101,6 @@ body {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
-.logo-icon svg {
-  width: 36px;
-  height: 36px;
-}
-
 .logo-title {
   font-size: 28px;
   font-weight: 700;

@@ -1,0 +1,65 @@
+.sidebar {
+    direction: ltr;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+/* المحتوى يبقى عربي */
+.sidebar nav,
+.sidebar .logo-text,
+.sidebar .flex {
+    direction: rtl;
+}
+
+.sidebar.closed {
+    width: 80px;
+}
+
+.sidebar.closed .menu-text,
+.sidebar.closed .logo-text {
+    display: none;
+}
+
+.sidebar.closed nav a {
+    justify-content: center;
+}
+
+.logo {
+    width: 44px;
+    height: 44px;
+}
+
+/* شكل السكرول */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* لون الخلفية */
+.sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 20px;
+}
+
+/* لون السكرول المتدرج */
+.sidebar::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        180deg,
+        #4338CA 0%,
+        #4F46E5 33%,
+        #818CF8 66%,
+        #EEF2FF 100%
+    );
+    border-radius: 20px;
+}
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px;
+    border-radius: 14px;
+    color: black;
+    transition: all 0.3s ease;
+}
+
+.menu-link:not(.bg-gradient-to-r):hover {
+    background: #f0f5ff;
+}
