@@ -46,10 +46,7 @@
 
       <!-- Menu -->
       <nav class="p-4 space-y-3">
-        <a
-          href="control_panel.html"
-          class="menu-link "
-        >
+        <a href="control_panel.html" class="menu-link">
           <span class="text-xl"><i class="fa-solid fa-layer-group"></i></span>
           <span class="menu-text font-semibold">لوحة التحكم</span>
         </a>
@@ -59,12 +56,15 @@
           <span class="menu-text">المرضى</span>
         </a>
 
-        <a href="appointments.html" class="menu-link ">
+        <a href="appointments.html" class="menu-link">
           <span class="text-xl"><i class="fa-regular fa-calendar"></i></span>
           <span class="menu-text">المواعيد</span>
         </a>
 
-        <a href="visits.html" class="menu-link  text-white  bg-gradient-to-r from-[#818CF8] via-[#4F46E5] to-[#4338CA]">
+        <a
+          href="visits.html"
+          class="menu-link text-white bg-gradient-to-r from-[#818CF8] via-[#4F46E5] to-[#4338CA]"
+        >
           <span class="text-xl"><i class="fa-solid fa-stethoscope"></i></span>
           <span class="menu-text">الزيارات</span>
         </a>
@@ -159,53 +159,6 @@
       <p class="text-gray-500 mt-3">مرحباً بك في نظام إدارة العيادة</p>
     </main>
 
-    <script>
-      const sidebar = document.getElementById("sidebar");
-      const topbar = document.getElementById("topbar");
-      const content = document.getElementById("content");
-
-      function toggleSidebar() {
-        sidebar.classList.toggle("closed");
-
-        if (sidebar.classList.contains("closed")) {
-          // عند الإغلاق
-          sidebar.style.width = "80px";
-          topbar.style.right = "80px";
-          content.style.paddingRight = "110px";
-        } else {
-          // عند الفتح
-          sidebar.style.width = "265px";
-          topbar.style.right = "265px";
-          content.style.paddingRight = "295px";
-        }
-      }
-    </script>
-    <script>
-      const menuLinks = document.querySelectorAll(".menu-link");
-
-      menuLinks.forEach((link) => {
-        link.addEventListener("click", function () {
-          // حذف الألوان من الجميع
-          menuLinks.forEach((item) => {
-            item.classList.remove(
-              "text-white",
-              "bg-gradient-to-r",
-              "from-[#818CF8]",
-              "to-[#4F46E5]",
-              "to-[#4338CA]",
-            );
-          });
-
-          // إضافة اللون للعنصر الحالي
-          this.classList.add(
-            "text-white",
-            "bg-gradient-to-r",
-            "from-[#818CF8]",
-            "to-[#4F46E5]",
-            "to-[#4338CA]",
-          );
-        });
-      });
-    </script>
+    <script src="../public/js/script_join.js"></script>
   </body>
 </html>
