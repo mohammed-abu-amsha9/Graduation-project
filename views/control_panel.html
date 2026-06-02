@@ -166,11 +166,431 @@
     </header>
 
     <!-- المحتوى -->
-    <main id="content" class="main pt-[120px] pr-[310px] px-8">
-      <h1 class="text-4xl font-bold">لوحة التحكم</h1>
-      <p class="text-gray-500 mt-3">مرحباً بك في نظام إدارة العيادة</p>
+    <main
+      id="content"
+      class="main pt-[110px] pr-[290px] px-8 h-screen overflow-y-auto"
+    >
+      <section class="w-full space-y-7">
+        <!-- Header -->
+        <div
+          class="flex flex-col md:flex-row md:items-start md:justify-between gap-4"
+        >
+          <div>
+            <h1 class="md:text-3xl font-medium text-[#0F172A]">لوحة التحكم</h1>
+            <p class="text-gray-500 mt-2">مرحبا بك في نظام إدارة العيادة</p>
+          </div>
+
+          <span
+            class="w-fit mt-2 bg-[#dbcfff63] text-[#331CAA] px-3 py-1 rounded-xl text-sm font-medium"
+          >
+            تاريخ اليوم: 20 مارس 2024
+          </span>
+        </div>
+
+        <!-- Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+          <!-- 1 -->
+          <div
+            class="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 h-[150px] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer"
+          >
+            <div class="flex items-start justify-between">
+              <div
+                class="w-12 h-12 rounded-xl bg-[#FFE8D6] text-white flex items-center justify-center text-xl"
+              >
+                <i class="fa-solid fa-users text-[#FD760B]"></i>
+              </div>
+
+              <span class="text-green-600 text-sm font-medium">
+                12% <i class="fa-solid fa-arrow-trend-up"></i>
+              </span>
+            </div>
+            <h2 class="text-2xl font-bold mt-4">5</h2>
+
+            <p class="text-gray-500 text-sm mt-1">إجمالي المرضى</p>
+          </div>
+
+          <!-- 2 -->
+          <div
+            class="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 h-[150px] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer"
+          >
+            <div class="flex items-start justify-between">
+              <div
+                class="w-12 h-12 rounded-xl bg-[#D3DDFF] text-white flex items-center justify-center text-xl"
+              >
+                <i class="fa-solid fa-stopwatch text-[#4F46E5]"></i>
+              </div>
+            </div>
+            <h2 class="text-2xl font-bold mt-4">5</h2>
+
+            <p class="text-gray-500 text-sm mt-1">مواعيد اليوم</p>
+          </div>
+
+          <!-- 3 -->
+          <div
+            class="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 h-[150px] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer"
+          >
+            <div class="flex items-start justify-between">
+              <div
+                class="w-12 h-12 rounded-xl bg-[#CEFFF0] text-white flex items-center justify-center"
+              >
+                <span class="text-2xl text-[#10B981]">₪</span>
+              </div>
+            </div>
+            <h2 class="text-2xl font-bold mt-4">500 ₪</h2>
+
+            <p class="text-gray-500 text-sm mt-1">إجمالي الإيرادات</p>
+          </div>
+
+          <!-- 4 -->
+          <div
+            class="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 h-[150px] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer"
+          >
+            <div class="flex items-start justify-between">
+              <div
+                class="w-12 h-12 rounded-xl bg-[#ffc1c7c1] text-white flex items-center justify-center text-xl"
+              >
+                <i class="fa-solid fa-circle-exclamation text-[#f84043]"></i>
+              </div>
+            </div>
+            <h2 class="text-2xl font-bold mt-4">150 ₪</h2>
+            <p class="text-gray-500 text-sm mt-1">فواتير معلقة</p>
+          </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+          <!-- الإيرادات الأسبوعية -->
+          <div
+            class="bg-white rounded-2xl border border-gray-200 shadow-sm p-7 xl:col-span-2"
+          >
+            <div class="flex items-center justify-between mb-8">
+              <h3 class="text-xl font-bold text-[#0F172A]">
+                الإيرادات الأسبوعية
+              </h3>
+
+              <select class="bg-gray-100 rounded-lg px-4 py-2 outline-none">
+                <option>هذا الأسبوع</option>
+                <option>هذا الشهر</option>
+              </select>
+            </div>
+
+            <div class="h-[290px] max-w-[760px] mx-auto">
+              <canvas id="revenueChart"></canvas>
+            </div>
+          </div>
+
+          <!-- توزيع المواعيد -->
+          <div
+            class="bg-white rounded-2xl border border-gray-200 shadow-sm p-7 xl:col-span-1"
+          >
+            <h3 class="text-lg font-medium text-[#0F172A] mb-10">
+              توزيع المواعيد
+            </h3>
+
+            <div class="flex justify-center mb-10">
+              <div
+                class="relative w-36 h-36 rounded-full bg-[conic-gradient(#10B981_0_45%,#4F46E5_45%_80%,#9555E6_80%_95%,#F59E0B_95%_100%)]"
+              >
+                <div class="absolute inset-7 bg-white rounded-full"></div>
+              </div>
+            </div>
+
+            <div class="flex justify-between gap-6">
+              <div class="flex flex-col gap-3 text-gray-700">
+                <span>
+                  <i
+                    class="inline-block w-3 h-3 rounded-full bg-[#10B981] ml-2"
+                  ></i>
+                  مكتمل
+                </span>
+
+                <span>
+                  <i
+                    class="inline-block w-3 h-3 rounded-full bg-[#4F46E5] ml-2"
+                  ></i>
+                  مجدول
+                </span>
+
+                <span>
+                  <i
+                    class="inline-block w-3 h-3 rounded-full bg-[#9555E6] ml-2"
+                  ></i>
+                  ملغي
+                </span>
+
+                <span>
+                  <i
+                    class="inline-block w-3 h-3 rounded-full bg-[#F59E0B] ml-2"
+                  ></i>
+                  لم يحضر
+                </span>
+              </div>
+
+              <div class="flex flex-col gap-3 text-[#0F172A]">
+                <span>45%</span>
+                <span>35%</span>
+                <span>15%</span>
+                <span>5%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+          <!-- مواعيد اليوم -->
+          <div
+            class="xl:col-span-2 bg-white rounded-2xl border border-gray-200 overflow-hidden"
+          >
+            <div class="flex items-center justify-between px-6 py-5 border-b">
+              <h3 class="text-lg font-medium">مواعيد اليوم</h3>
+
+              <a href="#" class="text-[#14B8A6] flex items-center gap-2">
+                عرض الكل
+                <i class="fa-solid fa-arrow-up-right"></i>
+              </a>
+            </div>
+
+            <div class="divide-y">
+              <div class="flex items-center justify-between p-5">
+                <div class="flex items-center gap-4">
+                  <div
+                    class="w-14 h-14 rounded-2xl bg-[#D3DDFF] flex items-center justify-center"
+                  >
+                    <i class="fa-regular fa-clock text-[#4F46E5] text-xl"></i>
+                  </div>
+
+                  <div>
+                    <h4 class="font-bold text-lg">محمد عبدالله</h4>
+                    <p class="text-gray-500">فحص دوري</p>
+                  </div>
+                </div>
+
+                <div class="text-left">
+                  <h4 class="font-medium text-2xl">09:00</h4>
+                  <span
+                    class="bg-[#D3DDFF] text-[#4F46E5] px-3 py-1 rounded-full text-sm"
+                  >
+                    فحص
+                  </span>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between p-5">
+                <div class="flex items-center gap-4">
+                  <div
+                    class="w-14 h-14 rounded-2xl bg-[#D3DDFF] flex items-center justify-center"
+                  >
+                    <i class="fa-regular fa-clock text-[#4F46E5] text-xl"></i>
+                  </div>
+
+                  <div>
+                    <h4 class="font-bold text-lg">فاطمة محمد</h4>
+                    <p class="text-gray-500">متابعة ضغط الدم</p>
+                  </div>
+                </div>
+
+                <div class="text-left">
+                  <h4 class="font-medium text-2xl">09:30</h4>
+                  <span
+                    class="bg-green-100 text-[#10B981] px-3 py-1 rounded-full text-sm"
+                  >
+                    متابعة
+                  </span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between p-5">
+                <div class="flex items-center gap-4">
+                  <div
+                    class="w-14 h-14 rounded-2xl bg-[#D3DDFF] flex items-center justify-center"
+                  >
+                    <i class="fa-regular fa-clock text-[#4F46E5] text-xl"></i>
+                  </div>
+
+                  <div>
+                    <h4 class="font-bold text-lg">فاطمة محمد</h4>
+                    <p class="text-gray-500">ازالة الشامة</p>
+                  </div>
+                </div>
+
+                <div class="text-left">
+                  <h4 class="font-medium text-2xl">09:30</h4>
+                  <span
+                    class="bg-[#dbcfff63] text-[#331CAA] px-3 py-1 rounded-full text-sm"
+                  >
+                    اجراء
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- النشاطات الأخيرة -->
+          <div
+            class="bg-white rounded-2xl border border-gray-200 overflow-hidden"
+          >
+            <div class="px-6 py-5 border-b">
+              <h3 class="text-lg font-medium">النشاطات الأخيرة</h3>
+            </div>
+
+            <div class="p-6 space-y-6">
+              <div class="flex gap-3">
+                <div class="w-3 h-3 rounded-full bg-[#4F46E5] mt-2"></div>
+
+                <div>
+                  <h4>تم إنشاء زيارة للمريض عبدالرحمن سعود</h4>
+                  <p class="text-gray-500 text-sm">10:00 ص • اليوم</p>
+                </div>
+              </div>
+
+              <div class="flex gap-3">
+                <div class="w-3 h-3 rounded-full bg-[#4F46E5] mt-2"></div>
+
+                <div>
+                  <h4>تم حجز موعد جديد</h4>
+                  <p class="text-gray-500 text-sm">11:00 ص • اليوم</p>
+                </div>
+              </div>
+
+              <div class="flex gap-3">
+                <div class="w-3 h-3 rounded-full bg-[#4F46E5] mt-2"></div>
+
+                <div>
+                  <h4>تم تسجيل مريض جديد</h4>
+                  <p class="text-gray-500 text-sm">11:15 ص • اليوم</p>
+                </div>
+              </div>
+
+              <div class="flex gap-3">
+                <div class="w-3 h-3 rounded-full bg-[#4F46E5] mt-2"></div>
+
+                <div>
+                  <h4>تم تسجيل دفعة نقدية</h4>
+                  <p class="text-gray-500 text-sm">11:15 ص • اليوم</p>
+                </div>
+              </div>
+
+              <div class="flex gap-3">
+                <div class="w-3 h-3 rounded-full bg-[#4F46E5] mt-2"></div>
+
+                <div>
+                  <h4>تم تسجيل العلامات الحيوية</h4>
+                  <p class="text-gray-500 text-sm">11:15 ص • اليوم</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mt-6">
+          <!-- وصفات معلقة -->
+          <div
+            class="bg-white rounded-2xl border border-gray-200 p-4 h-[280px]"
+          >
+            <div class="flex items-center justify-between mb-6">
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-paperclip text-[#14B8A6] text-xl"></i>
+                <h3 class="text-lg font-medium">وصفات معلقة</h3>
+              </div>
+              <span
+                class="w-8 h-8 rounded-full bg-[#FFE8D6] text-[#FD760B] flex items-center justify-center"
+                >1</span
+              >
+            </div>
+            <div class="bg-[#ffe8d654] rounded-2xl p-4">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h4 class="font-normal">فاطمة محمد</h4>
+
+                  <p class="text-gray-500 text-sm">1 أدوية</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- فواتير معلقة -->
+          <div
+            class="bg-white rounded-2xl border border-gray-200 p-4 h-[280px]"
+          >
+            <div class="flex items-center justify-between mb-6">
+              <div class="flex items-center gap-3">
+                <i class="fa-regular fa-file-lines text-[#4F46E5] text-2xl"></i>
+                <h3 class="text-lg font-medium">فواتير معلقة</h3>
+              </div>
+              <span
+                class="w-8 h-8 rounded-full bg-[#D3DDFF] text-[#4F46E5] flex items-center justify-center"
+              >
+                2
+              </span>
+            </div>
+
+            <div class="space-y-4">
+              <div class="bg-gray-50 rounded-2xl p-4">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <h4 class="font-normal">فاطمة محمد</h4>
+
+                    <p class="text-gray-500 text-sm">فاتورة #2</p>
+                  </div>
+
+                  <span class="font-bold"> 300 ₪ </span>
+                </div>
+              </div>
+
+              <div class="bg-gray-50 rounded-2xl p-4">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <h4 class="font-normal">عبدالرحمن سعود</h4>
+
+                    <p class="text-gray-500 text-sm">فاتورة #3</p>
+                  </div>
+
+                  <span class="font-bold"> 150 ₪ </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- إجراءات سريعة -->
+          <div
+            class="bg-white rounded-2xl border border-gray-200 p-5 h-[280px]"
+          >
+            <h3 class="text-lg font-medium mb-4">إجراءات سريعة</h3>
+
+            <div class="grid grid-cols-2 gap-3">
+              <button
+                class="bg-[#EEF2FF] hover:bg-[#D3DDFF] rounded-2xl p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md flex flex-col items-center justify-center h-[90px]"
+              >
+                <i
+                  class="fa-regular fa-calendar-plus text-2xl text-[#4F46E5]"
+                ></i>
+                <p class="mt-2 font-medium text-sm">موعد جديد</p>
+              </button>
+
+              <button
+                class="bg-[#ECFDF5] hover:bg-[#D1FAE5] rounded-2xl p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md flex flex-col items-center justify-center h-[90px]"
+              >
+                <i class="fa-solid fa-plus text-2xl text-[#10B981]"></i>
+                <p class="mt-2 font-medium text-sm">مريض جديد</p>
+              </button>
+
+              <button
+                class="bg-[#FFF7ED] hover:bg-[#FFE8D6] rounded-2xl p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md flex flex-col items-center justify-center h-[90px]"
+              >
+                <i class="fa-regular fa-file-lines text-2xl text-[#FD760B]"></i>
+                <p class="mt-2 font-medium text-sm">فاتورة جديدة</p>
+              </button>
+
+              <button
+                class="bg-[#F0FDF4] hover:bg-[#DBCFFF] rounded-2xl p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md flex flex-col items-center justify-center h-[90px]"
+              >
+                <i class="fa-solid fa-wave-square text-2xl text-[#331CAA]"></i>
+                <p class="mt-2 font-medium text-sm">زيارة جديدة</p>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../public/js/script_join.js"></script>
   </body>
 </html>

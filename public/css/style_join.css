@@ -28,25 +28,28 @@
   width: 44px;
   height: 44px;
 }
-
-/* شكل السكرول */
-.sidebar::-webkit-scrollbar {
+.sidebar::-webkit-scrollbar{
+  width: 0;
+}
+#content::-webkit-scrollbar {
   width: 6px;
 }
 
-/* لون الخلفية */
-.sidebar::-webkit-scrollbar-track {
+.sidebar::-webkit-scrollbar-track,
+#content::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 20px;
 }
 
-/* لون السكرول المتدرج */
-.sidebar::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg,
-      #4338CA 0%,
-      #4F46E5 33%,
-      #818CF8 66%,
-      #EEF2FF 100%);
+.sidebar::-webkit-scrollbar-thumb,
+#content::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    #4338CA 0%,
+    #4F46E5 33%,
+    #818CF8 66%,
+    #EEF2FF 100%
+  );
   border-radius: 20px;
 }
 
@@ -149,5 +152,30 @@
     width: 40px !important;
     height: 40px !important;
   }
+}
+
+.chart-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #4F46E5 #f1f1f1;
+}
+
+.chart-scroll::-webkit-scrollbar {
+  height: 3px !important;
+}
+
+.chart-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1 !important;
+  border-radius: 20px;
+}
+
+.chart-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    90deg,
+    #4338CA 0%,
+    #4F46E5 33%,
+    #818CF8 66%,
+    #EEF2FF 100%
+  ) !important;
+  border-radius: 20px;
 }
 

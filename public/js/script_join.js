@@ -101,3 +101,114 @@ function closeMobileSidebar() {
 
   updateMobileMenuIcon();
 }
+
+const revenueCanvas = document.getElementById("revenueChart");
+
+if (revenueCanvas) {
+  const ctx = revenueCanvas.getContext("2d");
+
+  const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+
+  gradient.addColorStop(0, "#4338CA");
+  gradient.addColorStop(0.4, "#4F46E5");
+  gradient.addColorStop(0.8, "#818CF8");
+  gradient.addColorStop(1, "#C7D2FE");
+
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: [
+        "السبت",
+        "الأحد",
+        "الاثنين",
+        "الثلاثاء",
+        "الأربعاء",
+        "الخميس",
+      ],
+      datasets: [
+        {
+          label: "الإيرادات",
+          data: [1200, 1800, 2100, 1600, 2400, 800],
+
+          backgroundColor: gradient,
+
+          borderRadius: 12,
+
+          borderSkipped: false,
+
+          barThickness: 50,
+        },
+      ],
+    },
+
+    options: {
+      responsive: true,
+
+      maintainAspectRatio: false,
+
+      plugins: {
+        legend: {
+          display: false,
+        },
+
+        tooltip: {
+          rtl: true,
+
+          textDirection: "rtl",
+
+          backgroundColor: "#111827",
+
+          callbacks: {
+            label: function (context) {
+              return context.raw + " ₪";
+            },
+          },
+        },
+      },
+
+      scales: {
+        x: {
+          grid: {
+            display: false,
+          },
+
+          border: {
+            display: false,
+          },
+
+          ticks: {
+            color: "#64748B",
+
+            font: {
+              size: 13,
+            },
+          },
+        },
+
+        y: {
+          beginAtZero: true,
+
+          grid: {
+            color: "#F1F5F9",
+          },
+
+          border: {
+            display: false,
+          },
+
+          ticks: {
+            color: "#94A3B8",
+
+            callback: function (value) {
+              return value + " ₪";
+            },
+          },
+        },
+      },
+
+      animation: {
+        duration: 1500,
+      },
+    },
+  });
+}
