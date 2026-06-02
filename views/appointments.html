@@ -38,17 +38,18 @@
 
       <!-- Toggle Button -->
       <button
+        id="sidebarToggleBtn"
         onclick="toggleSidebar()"
-        class="absolute -right-2 top-[75px] w-8 h-8 rounded-full bg-white border shadow flex items-center justify-center text-gray-500"
+        class="sidebar-toggle-btn absolute -left-3 top-[76px] w-8 h-8 rounded-full bg-white border shadow flex items-center justify-center text-gray-500 z-[60]"
       >
-        <i class="fa-solid fa-angle-left"></i>
+        <i id="sidebarToggleIcon" class="fa-solid fa-angle-right"></i>
       </button>
 
       <!-- Menu -->
       <nav class="p-4 space-y-3">
         <a
           href="control_panel.html"
-          class="menu-link "
+          class="menu-link"
         >
           <span class="text-xl"><i class="fa-solid fa-layer-group"></i></span>
           <span class="menu-text font-semibold">لوحة التحكم</span>
@@ -59,7 +60,7 @@
           <span class="menu-text">المرضى</span>
         </a>
 
-        <a href="appointments.html" class="menu-link  text-white  bg-gradient-to-r from-[#818CF8] via-[#4F46E5] to-[#4338CA]">
+        <a href="appointments.html" class="menu-link  text-white bg-gradient-to-r from-[#818CF8] via-[#4F46E5] to-[#4338CA]">
           <span class="text-xl"><i class="fa-regular fa-calendar"></i></span>
           <span class="menu-text">المواعيد</span>
         </a>
@@ -100,12 +101,24 @@
         </a>
       </nav>
     </aside>
+    <div
+      id="sidebarOverlay"
+      class="sidebar-overlay"
+      onclick="closeMobileSidebar()"
+    ></div>
 
     <!-- القائمة العلوية -->
     <header
       id="topbar"
       class="main fixed top-0 left-0 right-[265px] h-[80px] bg-white border-b border-gray-200 flex items-center justify-between px-8 z-40"
     >
+      <button
+        id="mobileMenuBtn"
+        onclick="toggleMobileSidebar()"
+        class="mobile-menu-btn"
+      >
+        <i class="fa-solid fa-bars"></i>
+      </button>
       <!-- جهة اليمين -->
       <div class="w-[520px]">
         <div class="relative">
@@ -125,10 +138,6 @@
 
       <!-- جهة اليسار -->
       <div class="flex items-center gap-6">
-        <button class="text-1xl text-gray-500">
-          <i class="fa-solid fa-bars"></i>
-        </button>
-
         <div class="relative">
           <button class="text-1xl text-gray-500">
             <i class="fa-regular fa-bell"></i>
@@ -142,10 +151,13 @@
 
         <div class="h-10 w-px bg-gray-200"></div>
 
-        <a href="login.html" class="flex items-center gap-3 cursor-pointer">
+        <a
+          href="login.html"
+          class="profile-link flex items-center gap-3 cursor-pointer"
+        >
           <img src="https://i.pravatar.cc/60" class="w-10 h-10 rounded-full" />
 
-          <div>
+          <div class="user-login hidden lg:block">
             <h3 class="font-medium">د. أحمد محمد</h3>
             <p class="text-sm text-gray-500">مدير النظام</p>
           </div>
@@ -159,7 +171,6 @@
       <p class="text-gray-500 mt-3">مرحباً بك في نظام إدارة العيادة</p>
     </main>
 
-        <script src="../public/js/script_join.js"></script>
-
+    <script src="../public/js/script_join.js"></script>
   </body>
 </html>

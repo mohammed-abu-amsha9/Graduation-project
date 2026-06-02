@@ -3,15 +3,21 @@ const topbar = document.getElementById("topbar");
 const content = document.getElementById("content");
 
 function toggleSidebar() {
+  if (window.innerWidth <= 1024) {
+    sidebar.classList.toggle("mobile-open");
+    sidebarOverlay.classList.toggle("show");
+
+    updateMobileMenuIcon();
+    return;
+  }
+
   sidebar.classList.toggle("closed");
 
   if (sidebar.classList.contains("closed")) {
-    // عند الإغلاق
     sidebar.style.width = "80px";
     topbar.style.right = "80px";
     content.style.paddingRight = "110px";
   } else {
-    // عند الفتح
     sidebar.style.width = "265px";
     topbar.style.right = "265px";
     content.style.paddingRight = "295px";
@@ -43,3 +49,55 @@ menuLinks.forEach((link) => {
     );
   });
 });
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+function toggleMobileSidebar() {
+  sidebar.classList.toggle("mobile-open");
+  sidebarOverlay.classList.toggle("show");
+
+  const icon = mobileMenuBtn.querySelector("i");
+
+  if (sidebar.classList.contains("mobile-open")) {
+    icon.classList.remove("fa-bars");
+    icon.classList.add("fa-xmark");
+  } else {
+    icon.classList.remove("fa-xmark");
+    icon.classList.add("fa-bars");
+  }
+}
+
+function closeMobileSidebar() {
+  sidebar.classList.remove("mobile-open");
+  sidebarOverlay.classList.remove("show");
+
+  const icon = mobileMenuBtn.querySelector("i");
+  icon.classList.remove("fa-xmark");
+  icon.classList.add("fa-bars");
+}
+
+function updateMobileMenuIcon() {
+  const icon = mobileMenuBtn.querySelector("i");
+
+  if (sidebar.classList.contains("mobile-open")) {
+    icon.classList.remove("fa-bars");
+    icon.classList.add("fa-xmark");
+  } else {
+    icon.classList.remove("fa-xmark");
+    icon.classList.add("fa-bars");
+  }
+}
+
+function toggleMobileSidebar() {
+  sidebar.classList.toggle("mobile-open");
+  sidebarOverlay.classList.toggle("show");
+
+  updateMobileMenuIcon();
+}
+
+function closeMobileSidebar() {
+  sidebar.classList.remove("mobile-open");
+  sidebarOverlay.classList.remove("show");
+
+  updateMobileMenuIcon();
+}
