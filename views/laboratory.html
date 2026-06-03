@@ -166,9 +166,421 @@
     </header>
 
     <!-- المحتوى -->
-    <main id="content" class="main pt-[120px] pr-[310px] px-8">
-      <h1 class="text-4xl font-bold">المختبر</h1>
-      <p class="text-gray-500 mt-3">مرحباً بك في نظام إدارة العيادة</p>
+    <main
+      id="content"
+      class="main pt-[112px] lg:pr-[310px] px-4 sm:px-6 lg:px-8 pb-10"
+    >
+      <section class="max-w-[1280px] mx-auto space-y-5">
+        <!-- Page Header -->
+        <div
+          class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
+        >
+          <div>
+            <h1 class="text-2xl sm:text-3xl font-bold text-[#0F172A]">
+              المختبر
+            </h1>
+            <p class="text-sm text-gray-500 mt-1">
+              إدارة طلبات التحليل ومتابعة النتائج
+            </p>
+          </div>
+
+          <button
+            class="w-full sm:w-auto h-11 px-5 rounded-xl bg-[#4F46E5] text-white text-sm font-semibold flex items-center justify-center gap-2 shadow-sm hover:bg-[#4338CA] transition"
+          >
+            <i class="fa-solid fa-plus text-sm"></i>
+            رفع نتائج
+          </button>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+          <div
+            class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex items-center justify-between"
+          >
+            <div>
+              <p class="text-sm text-gray-500">إجمالي الطلبات</p>
+              <h3 class="text-2xl font-bold mt-1">4</h3>
+            </div>
+            <div
+              class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-500 flex items-center justify-center text-lg"
+            >
+              <i class="fa-solid fa-vial"></i>
+            </div>
+          </div>
+
+          <div
+            class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex items-center justify-between"
+          >
+            <div>
+              <p class="text-sm text-gray-500">قيد التحليل</p>
+              <h3 class="text-2xl font-bold mt-1">1</h3>
+            </div>
+            <div
+              class="w-11 h-11 rounded-xl bg-indigo-50 text-indigo-500 flex items-center justify-center text-lg"
+            >
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+          </div>
+
+          <div
+            class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex items-center justify-between"
+          >
+            <div>
+              <p class="text-sm text-gray-500">المعلق</p>
+              <h3 class="text-2xl font-bold mt-1">1</h3>
+            </div>
+            <div
+              class="w-11 h-11 rounded-xl bg-orange-50 text-orange-500 flex items-center justify-center text-lg"
+            >
+              <i class="fa-regular fa-clock"></i>
+            </div>
+          </div>
+
+          <div
+            class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex items-center justify-between"
+          >
+            <div>
+              <p class="text-sm text-gray-500">مكتملة</p>
+              <h3 class="text-2xl font-bold mt-1">2</h3>
+            </div>
+            <div
+              class="w-11 h-11 rounded-xl bg-teal-50 text-teal-500 flex items-center justify-center text-lg"
+            >
+              <i class="fa-solid fa-check"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filters + Search -->
+        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4"
+          >
+            <div class="flex flex-wrap items-center gap-2">
+              <button
+                class="h-10 px-6 rounded-xl bg-[#4F46E5] text-white text-sm font-medium"
+              >
+                الكل
+              </button>
+
+              <button
+                class="h-10 px-4 rounded-xl border border-gray-200 text-gray-600 text-sm hover:bg-gray-50 transition"
+              >
+                قيد الانتظار
+                <span
+                  class="inline-flex items-center justify-center min-w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs mr-1"
+                  >1</span
+                >
+              </button>
+
+              <button
+                class="h-10 px-4 rounded-xl border border-gray-200 text-gray-600 text-sm hover:bg-gray-50 transition"
+              >
+                مكتمل
+                <span
+                  class="inline-flex items-center justify-center min-w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 text-xs mr-1"
+                  >1</span
+                >
+              </button>
+            </div>
+
+            <div class="relative w-full lg:w-[430px]">
+              <input
+                type="text"
+                placeholder="بحث عن تحليل أو مريض..."
+                class="w-full h-11 rounded-xl border border-gray-200 bg-[#FAFBFC] px-4 pr-11 outline-none text-sm text-gray-600 focus:bg-white focus:border-[#4F46E5] focus:ring-4 focus:ring-indigo-50 transition"
+              />
+              <i
+                class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"
+              ></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table Card -->
+        <div
+          class="hidden lg:block bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden"
+        >
+          <div class="overflow-x-auto">
+            <table class="w-full min-w-[980px] text-sm text-right">
+              <thead class="bg-[#FAFBFC] border-b border-gray-100 text-gray-500">
+                <tr>
+                  <th class="py-4 px-4 font-semibold whitespace-nowrap">
+                    رقم الطلب
+                  </th>
+                  <th class="py-4 px-4 font-semibold whitespace-nowrap">
+                    المريض
+                  </th>
+                  <th class="py-4 px-4 font-semibold whitespace-nowrap">
+                    التحليل
+                  </th>
+                  <th class="py-4 px-4 font-semibold whitespace-nowrap">
+                    الفئة
+                  </th>
+                  <th class="py-4 px-4 font-semibold whitespace-nowrap">
+                    الأولوية
+                  </th>
+                  <th class="py-4 px-4 font-semibold whitespace-nowrap">
+                    الحالة
+                  </th>
+                  <th class="py-4 px-4 font-semibold whitespace-nowrap">
+                    النتيجة
+                  </th>
+                  <th
+                    class="py-4 px-4 font-semibold whitespace-nowrap text-center"
+                  >
+                    الإجراءات
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody class="divide-y divide-gray-100">
+                <tr class="hover:bg-gray-50 transition">
+                  <td class="py-4 px-4 font-semibold text-[#0F172A]">#1</td>
+                  <td class="py-4 px-4">
+                    <p class="font-medium text-[#0F172A]">محمد عبد الله</p>
+                    <p class="text-xs text-gray-400 mt-1">د. خالد عبدالله</p>
+                  </td>
+                  <td class="py-4 px-4 whitespace-nowrap">
+                    صورة دم كاملة (CBC)
+                  </td>
+                  <td class="py-4 px-4">دم</td>
+                  <td class="py-4 px-4">روتيني</td>
+                  <td class="py-4 px-4">
+                    <span
+                      class="inline-flex bg-indigo-50 text-indigo-600 px-3 py-1 rounded-lg text-xs font-medium"
+                      >معلق</span
+                    >
+                  </td>
+                  <td class="py-4 px-4">-</td>
+                  <td class="py-4 px-4">
+                    <div class="flex items-center justify-center gap-2">
+                      <button
+                        class="w-8 h-8 rounded-lg bg-gray-50 text-gray-500 hover:text-[#4F46E5] hover:bg-indigo-50 transition"
+                        title="عرض"
+                      >
+                        <i class="fa-regular fa-eye"></i>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-lg bg-gray-50 text-gray-500 hover:text-[#4F46E5] hover:bg-indigo-50 transition"
+                        title="تحميل"
+                      >
+                        <i class="fa-solid fa-download"></i>
+                      </button>
+                      <button
+                        class="h-8 px-3 rounded-lg bg-emerald-50 text-emerald-600 text-xs font-medium hover:bg-emerald-100 transition"
+                      >
+                        إدخال نتيجة
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr class="hover:bg-gray-50 transition">
+                  <td class="py-4 px-4 font-semibold text-[#0F172A]">#2</td>
+                  <td class="py-4 px-4">
+                    <p class="font-medium text-[#0F172A]">فاطمة محمد</p>
+                    <p class="text-xs text-gray-400 mt-1">د. سارة أحمد</p>
+                  </td>
+                  <td class="py-4 px-4 whitespace-nowrap">وظائف كلى</td>
+                  <td class="py-4 px-4">كيمياء</td>
+                  <td class="py-4 px-4">عاجل</td>
+                  <td class="py-4 px-4">
+                    <span
+                      class="inline-flex bg-orange-50 text-orange-600 px-3 py-1 rounded-lg text-xs font-medium"
+                      >قيد التحليل</span
+                    >
+                  </td>
+                  <td class="py-4 px-4">-</td>
+                  <td class="py-4 px-4">
+                    <div class="flex items-center justify-center gap-2">
+                      <button
+                        class="w-8 h-8 rounded-lg bg-gray-50 text-gray-500 hover:text-[#4F46E5] hover:bg-indigo-50 transition"
+                      >
+                        <i class="fa-regular fa-eye"></i>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-lg bg-gray-50 text-gray-500 hover:text-[#4F46E5] hover:bg-indigo-50 transition"
+                      >
+                        <i class="fa-solid fa-download"></i>
+                      </button>
+                      <button
+                        class="h-8 px-3 rounded-lg bg-emerald-50 text-emerald-600 text-xs font-medium hover:bg-emerald-100 transition"
+                      >
+                        إدخال نتيجة
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr class="hover:bg-gray-50 transition">
+                  <td class="py-4 px-4 font-semibold text-[#0F172A]">#3</td>
+                  <td class="py-4 px-4">
+                    <p class="font-medium text-[#0F172A]">محمد عبد الله</p>
+                    <p class="text-xs text-gray-400 mt-1">د. خالد عبدالله</p>
+                  </td>
+                  <td class="py-4 px-4 whitespace-nowrap">سكر الدم الصائم</td>
+                  <td class="py-4 px-4">كيمياء</td>
+                  <td class="py-4 px-4">روتيني</td>
+                  <td class="py-4 px-4">
+                    <span
+                      class="inline-flex bg-emerald-50 text-emerald-600 px-3 py-1 rounded-lg text-xs font-medium"
+                      >مكتمل</span
+                    >
+                  </td>
+                  <td class="py-4 px-4 whitespace-nowrap">95 mg/dL</td>
+                  <td class="py-4 px-4">
+                    <div class="flex items-center justify-center gap-2">
+                      <button
+                        class="w-8 h-8 rounded-lg bg-gray-50 text-gray-500 hover:text-[#4F46E5] hover:bg-indigo-50 transition"
+                      >
+                        <i class="fa-regular fa-eye"></i>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-lg bg-gray-50 text-gray-500 hover:text-[#4F46E5] hover:bg-indigo-50 transition"
+                      >
+                        <i class="fa-solid fa-download"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr class="hover:bg-gray-50 transition">
+                  <td class="py-4 px-4 font-semibold text-[#0F172A]">#4</td>
+                  <td class="py-4 px-4">
+                    <p class="font-medium text-[#0F172A]">محمد عبد الله</p>
+                    <p class="text-xs text-gray-400 mt-1">د. خالد عبدالله</p>
+                  </td>
+                  <td class="py-4 px-4 whitespace-nowrap">سكر الدم الصائم</td>
+                  <td class="py-4 px-4">كيمياء</td>
+                  <td class="py-4 px-4">روتيني</td>
+                  <td class="py-4 px-4">
+                    <span
+                      class="inline-flex bg-emerald-50 text-emerald-600 px-3 py-1 rounded-lg text-xs font-medium"
+                      >مكتمل</span
+                    >
+                  </td>
+                  <td class="py-4 px-4 whitespace-nowrap">95 mg/dL</td>
+                  <td class="py-4 px-4">
+                    <div class="flex items-center justify-center gap-2">
+                      <button
+                        class="w-8 h-8 rounded-lg bg-gray-50 text-gray-500 hover:text-[#4F46E5] hover:bg-indigo-50 transition"
+                      >
+                        <i class="fa-regular fa-eye"></i>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-lg bg-gray-50 text-gray-500 hover:text-[#4F46E5] hover:bg-indigo-50 transition"
+                      >
+                        <i class="fa-solid fa-download"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Mobile Cards -->
+        <div class="grid grid-cols-1 gap-4 lg:hidden">
+          <article class="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <p class="font-bold text-[#0F172A]">#1 - محمد عبد الله</p>
+                <p class="text-xs text-gray-400 mt-1">د. خالد عبدالله</p>
+              </div>
+              <span
+                class="bg-indigo-50 text-indigo-600 px-3 py-1 rounded-lg text-xs font-medium"
+                >معلق</span
+              >
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 text-sm mt-4">
+              <p><span class="text-gray-400">التحليل:</span> صورة دم كاملة</p>
+              <p><span class="text-gray-400">الفئة:</span> دم</p>
+              <p><span class="text-gray-400">الأولوية:</span> روتيني</p>
+              <p><span class="text-gray-400">النتيجة:</span> -</p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2 mt-4 pt-3 border-t">
+              <button
+                class="h-9 px-3 rounded-lg bg-emerald-50 text-emerald-600 text-xs font-medium"
+              >
+                إدخال نتيجة
+              </button>
+              <button class="w-9 h-9 rounded-lg bg-gray-50 text-gray-500">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+              <button class="w-9 h-9 rounded-lg bg-gray-50 text-gray-500">
+                <i class="fa-solid fa-download"></i>
+              </button>
+            </div>
+          </article>
+
+          <article class="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <p class="font-bold text-[#0F172A]">#2 - فاطمة محمد</p>
+                <p class="text-xs text-gray-400 mt-1">د. سارة أحمد</p>
+              </div>
+              <span
+                class="bg-orange-50 text-orange-600 px-3 py-1 rounded-lg text-xs font-medium"
+                >قيد التحليل</span
+              >
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 text-sm mt-4">
+              <p><span class="text-gray-400">التحليل:</span> وظائف كلى</p>
+              <p><span class="text-gray-400">الفئة:</span> كيمياء</p>
+              <p><span class="text-gray-400">الأولوية:</span> عاجل</p>
+              <p><span class="text-gray-400">النتيجة:</span> -</p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2 mt-4 pt-3 border-t">
+              <button
+                class="h-9 px-3 rounded-lg bg-emerald-50 text-emerald-600 text-xs font-medium"
+              >
+                إدخال نتيجة
+              </button>
+              <button class="w-9 h-9 rounded-lg bg-gray-50 text-gray-500">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+              <button class="w-9 h-9 rounded-lg bg-gray-50 text-gray-500">
+                <i class="fa-solid fa-download"></i>
+              </button>
+            </div>
+          </article>
+
+          <article class="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <p class="font-bold text-[#0F172A]">#3 - محمد عبد الله</p>
+                <p class="text-xs text-gray-400 mt-1">د. خالد عبدالله</p>
+              </div>
+              <span
+                class="bg-emerald-50 text-emerald-600 px-3 py-1 rounded-lg text-xs font-medium"
+                >مكتمل</span
+              >
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 text-sm mt-4">
+              <p><span class="text-gray-400">التحليل:</span> سكر الدم</p>
+              <p><span class="text-gray-400">الفئة:</span> كيمياء</p>
+              <p><span class="text-gray-400">الأولوية:</span> روتيني</p>
+              <p><span class="text-gray-400">النتيجة:</span> 95 mg/dL</p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2 mt-4 pt-3 border-t">
+              <button class="w-9 h-9 rounded-lg bg-gray-50 text-gray-500">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+              <button class="w-9 h-9 rounded-lg bg-gray-50 text-gray-500">
+                <i class="fa-solid fa-download"></i>
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
     </main>
 
     <script src="../public/js/script_join.js"></script>

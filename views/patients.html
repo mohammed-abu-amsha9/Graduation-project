@@ -11,6 +11,77 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <link rel="stylesheet" href="../public/css/style_join.css" />
+
+    <style>
+      /* تثبيت السايدبار على الديسكتوب ومنع حركة الدخول/الخروج */
+      :root { --sidebar-width: 265px; }
+
+      html, body { overflow-x: hidden; }
+
+      .sidebar,
+      #topbar,
+      #content {
+        transition: none !important;
+      }
+
+      .sidebar-toggle-btn {
+        display: none !important;
+      }
+
+      @media (min-width: 1024px) {
+        #sidebar {
+          width: var(--sidebar-width) !important;
+          transform: none !important;
+          right: 0 !important;
+        }
+
+        #topbar {
+          right: var(--sidebar-width) !important;
+          left: 0 !important;
+        }
+
+        #content {
+          margin-right: var(--sidebar-width) !important;
+          padding-right: 2rem !important;
+          padding-left: 2rem !important;
+        }
+      }
+
+      @media (max-width: 1023px) {
+        #sidebar {
+          transform: translateX(100%);
+          transition: transform 0.25s ease !important;
+        }
+
+        body.sidebar-mobile-open #sidebar {
+          transform: translateX(0);
+        }
+
+        #topbar {
+          right: 0 !important;
+          left: 0 !important;
+          padding-inline: 1rem !important;
+        }
+
+        #content {
+          margin-right: 0 !important;
+          padding-right: 1rem !important;
+          padding-left: 1rem !important;
+        }
+
+        #sidebarOverlay {
+          display: none;
+        }
+
+        body.sidebar-mobile-open #sidebarOverlay {
+          display: block;
+          position: fixed;
+          inset: 0;
+          background: rgba(15, 23, 42, 0.35);
+          z-index: 45;
+        }
+      }
+    </style>
   </head>
 
   <body class="bg-[#F5F7FB] text-[#0F172A]">
@@ -120,7 +191,7 @@
         <i class="fa-solid fa-bars"></i>
       </button>
       <!-- جهة اليمين -->
-      <div class="w-[520px]">
+      <div class="hidden md:block w-full max-w-[520px]">
         <div class="relative">
           <input
             type="text"
@@ -166,11 +237,237 @@
     </header>
 
     <!-- المحتوى -->
-    <main id="content" class="main pt-[120px] pr-[310px] px-8">
-      <h1 class="text-4xl font-bold">المرضى</h1>
-      <p class="text-gray-500 mt-3">مرحباً بك في نظام إدارة العيادة</p>
+    <main id="content" class="main pt-[104px] px-4 sm:px-6 lg:px-8 pb-10">
+      <section class="max-w-[1400px] mx-auto space-y-5">
+        <!-- Page Header -->
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+          <div>
+            <h1 class="text-2xl sm:text-3xl font-bold text-[#0F172A]">إدارة المرضى</h1>
+            <p class="text-sm text-gray-400 mt-2">عرض وإدارة جميع سجلات المرضى</p>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <button class="inline-flex items-center gap-2 h-10 px-4 rounded-xl bg-white border border-gray-200 text-gray-600 text-sm hover:bg-gray-50 transition">
+              <i class="fa-solid fa-download text-xs"></i>
+              تصدير
+            </button>
+            <button class="inline-flex items-center gap-2 h-10 px-4 rounded-xl bg-[#4F46E5] text-white text-sm font-medium hover:bg-[#4338CA] transition shadow-sm">
+              <i class="fa-solid fa-plus text-xs"></i>
+              إضافة مريض
+            </button>
+          </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+          <div class="bg-white rounded-2xl border border-gray-100 p-4 shadow-sm flex items-center justify-between">
+            <div>
+              <p class="text-sm text-gray-500">إجمالي المرضى</p>
+              <h3 class="text-2xl font-bold mt-2">5</h3>
+            </div>
+            <div class="w-11 h-11 rounded-xl bg-indigo-100 text-indigo-500 flex items-center justify-center">
+              <i class="fa-solid fa-user-group"></i>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-gray-100 p-4 shadow-sm flex items-center justify-between">
+            <div>
+              <p class="text-sm text-gray-500">بالغين</p>
+              <h3 class="text-2xl font-bold mt-2">5</h3>
+            </div>
+            <div class="w-11 h-11 rounded-xl bg-emerald-100 text-emerald-500 flex items-center justify-center">
+              <i class="fa-solid fa-check"></i>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-gray-100 p-4 shadow-sm flex items-center justify-between">
+            <div>
+              <p class="text-sm text-gray-500">أطفال</p>
+              <h3 class="text-2xl font-bold mt-2">0</h3>
+            </div>
+            <div class="w-11 h-11 rounded-xl bg-purple-100 text-purple-500 flex items-center justify-center">
+              <i class="fa-solid fa-child-reaching"></i>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-gray-100 p-4 shadow-sm flex items-center justify-between">
+            <div>
+              <p class="text-sm text-gray-500">لديهم تأمين</p>
+              <h3 class="text-2xl font-bold mt-2">3</h3>
+            </div>
+            <div class="w-11 h-11 rounded-xl bg-orange-100 text-orange-500 flex items-center justify-center">
+              <i class="fa-solid fa-id-card"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 space-y-4">
+          <div class="flex flex-col lg:flex-row lg:items-center gap-3">
+            <div class="relative flex-1">
+              <input
+                type="text"
+                placeholder="بحث بالاسم أو الهاتف أو البريد الإلكتروني..."
+                class="w-full h-11 rounded-xl border border-gray-200 bg-white px-4 pr-11 text-sm outline-none focus:border-[#4F46E5] focus:ring-4 focus:ring-indigo-50 transition"
+              />
+              <i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button class="w-11 h-11 rounded-xl bg-[#4F46E5] text-white shadow-sm">
+                <i class="fa-solid fa-table-cells-large"></i>
+              </button>
+              <button class="w-11 h-11 rounded-xl border border-gray-200 bg-white text-gray-500 hover:bg-gray-50 transition">
+                <i class="fa-solid fa-list"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <label class="space-y-1">
+              <span class="text-xs text-gray-500">الجنس</span>
+              <select class="w-full h-11 rounded-xl border border-gray-200 px-4 text-sm outline-none focus:border-[#4F46E5]">
+                <option>الكل</option>
+                <option>ذكر</option>
+                <option>أنثى</option>
+              </select>
+            </label>
+
+            <label class="space-y-1">
+              <span class="text-xs text-gray-500">التأمين</span>
+              <select class="w-full h-11 rounded-xl border border-gray-200 px-4 text-sm outline-none focus:border-[#4F46E5]">
+                <option>الكل</option>
+                <option>لديه تأمين</option>
+                <option>بدون تأمين</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden hidden lg:block">
+          <div class="overflow-x-auto">
+            <table class="w-full min-w-[980px] text-sm text-right">
+              <thead class="bg-gray-50 border-b border-gray-100 text-gray-600">
+                <tr>
+                  <th class="py-4 px-4 font-medium">المريض</th>
+                  <th class="py-4 px-4 font-medium">معلومات الاتصال</th>
+                  <th class="py-4 px-4 font-medium">العمر</th>
+                  <th class="py-4 px-4 font-medium">الجنس</th>
+                  <th class="py-4 px-4 font-medium">الحالة</th>
+                  <th class="py-4 px-4 font-medium text-center">إجراءات</th>
+                </tr>
+              </thead>
+
+              <tbody class="divide-y divide-gray-100">
+                <tr class="hover:bg-gray-50 transition">
+                  <td class="py-4 px-4">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-sm">مع</div>
+                      <div>
+                        <p class="font-semibold text-[#0F172A]">محمد عبد الله</p>
+                        <p class="text-xs text-gray-400 mt-1">#1</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <p class="text-gray-700">0597946180</p>
+                    <p class="text-xs text-gray-400 mt-1">mohammed@gmail.com</p>
+                  </td>
+                  <td class="py-4 px-4 text-gray-600">العمر</td>
+                  <td class="py-4 px-4 text-gray-600">ذكر</td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex px-3 py-1 rounded-full bg-emerald-100 text-emerald-600 text-xs font-medium">نشط</span>
+                  </td>
+                  <td class="py-4 px-4">
+                    <div class="flex items-center justify-center gap-3">
+                      <button class="text-indigo-500 hover:text-indigo-700"><i class="fa-regular fa-eye"></i></button>
+                      <button class="text-orange-500 hover:text-orange-700"><i class="fa-solid fa-pen"></i></button>
+                      <button class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr class="hover:bg-gray-50 transition">
+                  <td class="py-4 px-4"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-sm">مع</div><div><p class="font-semibold">محمد عبد الله</p><p class="text-xs text-gray-400 mt-1">#2</p></div></div></td>
+                  <td class="py-4 px-4"><p>0597946180</p><p class="text-xs text-gray-400 mt-1">mohammed@gmail.com</p></td>
+                  <td class="py-4 px-4 text-gray-600">العمر</td>
+                  <td class="py-4 px-4 text-gray-600">ذكر</td>
+                  <td class="py-4 px-4"><span class="inline-flex px-3 py-1 rounded-full bg-emerald-100 text-emerald-600 text-xs font-medium">نشط</span></td>
+                  <td class="py-4 px-4"><div class="flex items-center justify-center gap-3"><button class="text-indigo-500"><i class="fa-regular fa-eye"></i></button><button class="text-orange-500"><i class="fa-solid fa-pen"></i></button><button class="text-red-500"><i class="fa-solid fa-trash"></i></button></div></td>
+                </tr>
+
+                <tr class="hover:bg-gray-50 transition">
+                  <td class="py-4 px-4"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-sm">مع</div><div><p class="font-semibold">محمد عبد الله</p><p class="text-xs text-gray-400 mt-1">#3</p></div></div></td>
+                  <td class="py-4 px-4"><p>0597946180</p><p class="text-xs text-gray-400 mt-1">mohammed@gmail.com</p></td>
+                  <td class="py-4 px-4 text-gray-600">العمر</td>
+                  <td class="py-4 px-4 text-gray-600">ذكر</td>
+                  <td class="py-4 px-4"><span class="inline-flex px-3 py-1 rounded-full bg-emerald-100 text-emerald-600 text-xs font-medium">نشط</span></td>
+                  <td class="py-4 px-4"><div class="flex items-center justify-center gap-3"><button class="text-indigo-500"><i class="fa-regular fa-eye"></i></button><button class="text-orange-500"><i class="fa-solid fa-pen"></i></button><button class="text-red-500"><i class="fa-solid fa-trash"></i></button></div></td>
+                </tr>
+
+                <tr class="hover:bg-gray-50 transition">
+                  <td class="py-4 px-4"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-sm">مع</div><div><p class="font-semibold">محمد عبد الله</p><p class="text-xs text-gray-400 mt-1">#4</p></div></div></td>
+                  <td class="py-4 px-4"><p>0597946180</p><p class="text-xs text-gray-400 mt-1">mohammed@gmail.com</p></td>
+                  <td class="py-4 px-4 text-gray-600">العمر</td>
+                  <td class="py-4 px-4 text-gray-600">ذكر</td>
+                  <td class="py-4 px-4"><span class="inline-flex px-3 py-1 rounded-full bg-emerald-100 text-emerald-600 text-xs font-medium">نشط</span></td>
+                  <td class="py-4 px-4"><div class="flex items-center justify-center gap-3"><button class="text-indigo-500"><i class="fa-regular fa-eye"></i></button><button class="text-orange-500"><i class="fa-solid fa-pen"></i></button><button class="text-red-500"><i class="fa-solid fa-trash"></i></button></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Mobile Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden">
+          <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 space-y-3">
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-sm">مع</div><div><p class="font-semibold">محمد عبد الله</p><p class="text-xs text-gray-400">#1</p></div></div>
+              <span class="bg-emerald-100 text-emerald-600 px-3 py-1 rounded-full text-xs">نشط</span>
+            </div>
+            <div class="grid grid-cols-2 gap-3 text-sm text-gray-600">
+              <p><span class="text-gray-400">الهاتف:</span> 0597946180</p>
+              <p><span class="text-gray-400">الجنس:</span> ذكر</p>
+              <p class="col-span-2"><span class="text-gray-400">البريد:</span> mohammed@gmail.com</p>
+            </div>
+            <div class="flex gap-2 pt-2"><button class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-500"><i class="fa-regular fa-eye"></i></button><button class="w-10 h-10 rounded-xl bg-orange-50 text-orange-500"><i class="fa-solid fa-pen"></i></button><button class="w-10 h-10 rounded-xl bg-red-50 text-red-500"><i class="fa-solid fa-trash"></i></button></div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 space-y-3">
+            <div class="flex items-center justify-between gap-3"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-sm">مع</div><div><p class="font-semibold">محمد عبد الله</p><p class="text-xs text-gray-400">#2</p></div></div><span class="bg-emerald-100 text-emerald-600 px-3 py-1 rounded-full text-xs">نشط</span></div>
+            <div class="grid grid-cols-2 gap-3 text-sm text-gray-600"><p><span class="text-gray-400">الهاتف:</span> 0597946180</p><p><span class="text-gray-400">الجنس:</span> ذكر</p><p class="col-span-2"><span class="text-gray-400">البريد:</span> mohammed@gmail.com</p></div>
+            <div class="flex gap-2 pt-2"><button class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-500"><i class="fa-regular fa-eye"></i></button><button class="w-10 h-10 rounded-xl bg-orange-50 text-orange-500"><i class="fa-solid fa-pen"></i></button><button class="w-10 h-10 rounded-xl bg-red-50 text-red-500"><i class="fa-solid fa-trash"></i></button></div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex flex-wrap items-center justify-center sm:justify-between gap-3">
+          <p class="text-sm text-gray-400">عرض 1 إلى 4 من 5 مرضى</p>
+          <div class="flex items-center gap-2">
+            <button class="h-9 px-4 rounded-lg bg-white border border-gray-200 text-sm text-gray-600">السابق</button>
+            <button class="w-9 h-9 rounded-lg bg-[#4F46E5] text-white text-sm">1</button>
+            <button class="w-9 h-9 rounded-lg bg-white border border-gray-200 text-sm text-gray-600">2</button>
+            <button class="h-9 px-4 rounded-lg bg-white border border-gray-200 text-sm text-gray-600">التالي</button>
+          </div>
+        </div>
+      </section>
     </main>
 
     <script src="../public/js/script_join.js"></script>
+    <script>
+      // السايدبار ثابت على الشاشات الكبيرة، والزر الجانبي معطل حتى لا يتحرك التصميم.
+      function toggleSidebar() {
+        return false;
+      }
+
+      function toggleMobileSidebar() {
+        document.body.classList.toggle("sidebar-mobile-open");
+      }
+
+      function closeMobileSidebar() {
+        document.body.classList.remove("sidebar-mobile-open");
+      }
+    </script>
   </body>
 </html>

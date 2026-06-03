@@ -11,6 +11,139 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <link rel="stylesheet" href="../public/css/style_join.css" />
+
+    <style>
+      /* Smooth sidebar collapse / expand */
+      :root {
+        --sidebar-open: 265px;
+        --sidebar-closed: 80px;
+        --anim: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      html { scroll-behavior: smooth; }
+
+      .sidebar,
+      .main,
+      #topbar,
+      #content,
+      .logo,
+      .logo-text,
+      .menu-link,
+      .menu-text,
+      .sidebar-toggle-btn,
+      #sidebarToggleIcon {
+        transition: all var(--anim) !important;
+      }
+
+      .sidebar {
+        width: var(--sidebar-open) !important;
+        will-change: width, transform;
+      }
+
+      .sidebar.closed {
+        width: var(--sidebar-closed) !important;
+      }
+
+      .sidebar .logo {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+      }
+
+      .sidebar.closed .logo-text,
+      .sidebar.closed .menu-text {
+        opacity: 0;
+        visibility: hidden;
+        width: 0;
+        max-width: 0;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      .sidebar.closed .menu-link {
+        justify-content: center;
+        padding-inline: 0 !important;
+        gap: 0 !important;
+      }
+
+      .sidebar.closed nav {
+        padding-inline: 12px !important;
+      }
+
+      .sidebar.closed #sidebarToggleIcon {
+        transform: rotate(180deg);
+      }
+
+      #topbar.sidebar-closed {
+        right: var(--sidebar-closed) !important;
+      }
+
+      #content.sidebar-closed {
+        padding-right: 110px !important;
+      }
+
+      #topbar {
+        right: var(--sidebar-open) !important;
+      }
+
+      #content {
+        padding-right: 310px !important;
+      }
+
+      @media (max-width: 1024px) {
+        #topbar {
+          right: 0 !important;
+          padding-inline: 16px !important;
+        }
+
+        #content,
+        #content.sidebar-closed {
+          padding-right: 16px !important;
+          padding-left: 16px !important;
+        }
+
+        .sidebar {
+          transform: translateX(100%);
+          width: var(--sidebar-open) !important;
+        }
+
+        .sidebar.mobile-open {
+          transform: translateX(0);
+        }
+
+        .sidebar.closed {
+          width: var(--sidebar-open) !important;
+        }
+
+        .sidebar.closed .logo-text,
+        .sidebar.closed .menu-text {
+          opacity: 1;
+          visibility: visible;
+          width: auto;
+          max-width: 180px;
+        }
+
+        .sidebar.closed .menu-link {
+          justify-content: flex-start;
+          gap: 12px !important;
+        }
+
+        .sidebar-overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(15, 23, 42, 0.35);
+          z-index: 45;
+          opacity: 0;
+          visibility: hidden;
+          transition: all var(--anim);
+        }
+
+        .sidebar-overlay.show {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    </style>
   </head>
 
   <body class="bg-[#F5F7FB] text-[#0F172A]">
@@ -166,11 +299,260 @@
     </header>
 
     <!-- المحتوى -->
-    <main id="content" class="main pt-[120px] pr-[310px] px-8">
-      <h1 class="text-4xl font-bold">المستخدمين</h1>
-      <p class="text-gray-500 mt-3">مرحباً بك في نظام إدارة العيادة</p>
+    <main id="content" class="main pt-[112px] pr-[310px] px-4 sm:px-6 lg:px-8 pb-10">
+      <section class="max-w-[1400px] mx-auto space-y-5">
+        <!-- Page Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 class="text-2xl sm:text-3xl font-bold text-[#0F172A]">المستخدمين</h1>
+            <p class="text-sm text-gray-400 mt-2">إدارة حسابات وصلاحيات المستخدمين</p>
+          </div>
+
+          <button
+            class="w-fit inline-flex items-center gap-2 bg-[#4F46E5] hover:bg-[#4338CA] text-white px-5 py-2.5 rounded-xl text-sm font-semibold shadow-sm transition"
+          >
+            <i class="fa-solid fa-plus"></i>
+            إضافة مستخدم
+          </button>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-4">
+          <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex items-center justify-between gap-4">
+            <div>
+              <p class="text-sm text-gray-500">إجمالي المستخدمين</p>
+              <h3 class="text-2xl font-bold mt-2">5</h3>
+              <p class="text-xs text-gray-400 mt-1">مستخدم</p>
+            </div>
+            <div class="w-11 h-11 rounded-xl bg-indigo-100 text-indigo-500 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-users"></i>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex items-center justify-between gap-4">
+            <div>
+              <p class="text-sm text-gray-500">الأطباء</p>
+              <h3 class="text-2xl font-bold mt-2">1</h3>
+              <p class="text-xs text-gray-400 mt-1">طبيب</p>
+            </div>
+            <div class="w-11 h-11 rounded-xl bg-emerald-100 text-emerald-500 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-user-doctor"></i>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex items-center justify-between gap-4">
+            <div>
+              <p class="text-sm text-gray-500">الممرضين</p>
+              <h3 class="text-2xl font-bold mt-2">1</h3>
+              <p class="text-xs text-gray-400 mt-1">ممرض</p>
+            </div>
+            <div class="w-11 h-11 rounded-xl bg-teal-100 text-teal-500 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-user-nurse"></i>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex items-center justify-between gap-4">
+            <div>
+              <p class="text-sm text-gray-500">الاستقبال</p>
+              <h3 class="text-2xl font-bold mt-2">1</h3>
+              <p class="text-xs text-gray-400 mt-1">موظف</p>
+            </div>
+            <div class="w-11 h-11 rounded-xl bg-sky-100 text-sky-500 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-user-tie"></i>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex items-center justify-between gap-4 sm:col-span-2 lg:col-span-1">
+            <div>
+              <p class="text-sm text-gray-500">الصيدلية</p>
+              <h3 class="text-2xl font-bold mt-2">1</h3>
+              <p class="text-xs text-gray-400 mt-1">صيدلي</p>
+            </div>
+            <div class="w-11 h-11 rounded-xl bg-emerald-100 text-emerald-500 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-capsules"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search and Filter -->
+        <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm">
+          <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-3">
+            <div class="relative">
+              <input
+                type="text"
+                placeholder="بحث عن اسم أو بريد أو رقم هاتف..."
+                class="w-full h-12 rounded-xl border border-gray-200 bg-white px-4 pr-11 outline-none text-sm text-gray-600 focus:border-[#4F46E5] focus:ring-4 focus:ring-indigo-50 transition"
+              />
+              <i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            </div>
+
+            <div class="flex flex-wrap gap-2">
+              <button class="h-12 px-5 rounded-xl bg-[#4F46E5] text-white text-sm font-medium shadow-sm">الكل</button>
+              <button class="h-12 px-5 rounded-xl border border-gray-200 bg-white text-gray-600 text-sm hover:bg-gray-50">الأطباء</button>
+              <button class="h-12 px-5 rounded-xl border border-gray-200 bg-white text-gray-600 text-sm hover:bg-gray-50">الموظفين</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Users Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+          <!-- Card 1 -->
+          <article class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 hover:shadow-md transition">
+            <div class="flex items-start justify-between gap-4">
+              <div class="min-w-0">
+                <h3 class="font-bold text-[#0F172A] truncate">د. خالد عبد الله</h3>
+                <p class="text-sm text-emerald-600 mt-1">طبيب</p>
+              </div>
+              <div class="shrink-0 w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold border border-emerald-100">د</div>
+            </div>
+
+            <div class="mt-5 space-y-3 text-sm text-gray-600">
+              <p class="flex items-center gap-2 min-w-0"><i class="fa-regular fa-envelope text-gray-400"></i><span class="truncate">khaled.abdullah@clinic.com</span></p>
+              <p class="flex items-center gap-2"><i class="fa-solid fa-phone text-gray-400"></i><span>0551234568</span></p>
+              <p class="flex items-center gap-2 text-gray-400"><i class="fa-solid fa-shield-halved"></i><span>جميع الصلاحيات</span></p>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 mt-5 pt-4 border-t border-gray-100">
+              <button class="h-10 rounded-xl border border-gray-200 text-emerald-500 hover:bg-emerald-50 transition" title="تعديل"><i class="fa-solid fa-pen"></i></button>
+              <button class="h-10 rounded-xl border border-gray-200 text-gray-500 hover:bg-gray-50 transition" title="صلاحيات"><i class="fa-solid fa-gear"></i></button>
+              <button class="h-10 rounded-xl border border-gray-200 text-red-500 hover:bg-red-50 transition" title="حذف"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 hover:shadow-md transition">
+            <div class="flex items-start justify-between gap-4">
+              <div class="min-w-0">
+                <h3 class="font-bold text-[#0F172A] truncate">سارة أحمد</h3>
+                <p class="text-sm text-emerald-600 mt-1">موظف استقبال</p>
+              </div>
+              <div class="shrink-0 w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold border border-emerald-100">س</div>
+            </div>
+
+            <div class="mt-5 space-y-3 text-sm text-gray-600">
+              <p class="flex items-center gap-2 min-w-0"><i class="fa-regular fa-envelope text-gray-400"></i><span class="truncate">sara.ahmad@clinic.com</span></p>
+              <p class="flex items-center gap-2"><i class="fa-solid fa-phone text-gray-400"></i><span>0551234568</span></p>
+              <p class="flex items-center gap-2 text-gray-400"><i class="fa-solid fa-shield-halved"></i><span>مواعيد المرضى</span></p>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 mt-5 pt-4 border-t border-gray-100">
+              <button class="h-10 rounded-xl border border-gray-200 text-emerald-500 hover:bg-emerald-50 transition"><i class="fa-solid fa-pen"></i></button>
+              <button class="h-10 rounded-xl border border-gray-200 text-gray-500 hover:bg-gray-50 transition"><i class="fa-solid fa-gear"></i></button>
+              <button class="h-10 rounded-xl border border-gray-200 text-red-500 hover:bg-red-50 transition"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 hover:shadow-md transition">
+            <div class="flex items-start justify-between gap-4">
+              <div class="min-w-0">
+                <h3 class="font-bold text-[#0F172A] truncate">د. محمد أحمد</h3>
+                <p class="text-sm text-emerald-600 mt-1">مدير النظام</p>
+              </div>
+              <div class="shrink-0 w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold border border-emerald-100">د</div>
+            </div>
+
+            <div class="mt-5 space-y-3 text-sm text-gray-600">
+              <p class="flex items-center gap-2 min-w-0"><i class="fa-regular fa-envelope text-gray-400"></i><span class="truncate">mohammad.admin@clinic.com</span></p>
+              <p class="flex items-center gap-2"><i class="fa-solid fa-phone text-gray-400"></i><span>0551234568</span></p>
+              <p class="flex items-center gap-2 text-gray-400"><i class="fa-solid fa-shield-halved"></i><span>صلاحيات كاملة</span></p>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 mt-5 pt-4 border-t border-gray-100">
+              <button class="h-10 rounded-xl border border-gray-200 text-emerald-500 hover:bg-emerald-50 transition"><i class="fa-solid fa-pen"></i></button>
+              <button class="h-10 rounded-xl border border-gray-200 text-gray-500 hover:bg-gray-50 transition"><i class="fa-solid fa-gear"></i></button>
+              <button class="h-10 rounded-xl border border-gray-200 text-red-500 hover:bg-red-50 transition"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 hover:shadow-md transition">
+            <div class="flex items-start justify-between gap-4">
+              <div class="min-w-0">
+                <h3 class="font-bold text-[#0F172A] truncate">نورة سعد</h3>
+                <p class="text-sm text-emerald-600 mt-1">ممرضة</p>
+              </div>
+              <div class="shrink-0 w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold border border-emerald-100">ن</div>
+            </div>
+
+            <div class="mt-5 space-y-3 text-sm text-gray-600">
+              <p class="flex items-center gap-2 min-w-0"><i class="fa-regular fa-envelope text-gray-400"></i><span class="truncate">noura.saad@clinic.com</span></p>
+              <p class="flex items-center gap-2"><i class="fa-solid fa-phone text-gray-400"></i><span>0551234568</span></p>
+              <p class="flex items-center gap-2 text-gray-400"><i class="fa-solid fa-shield-halved"></i><span>مواعيد المرضى</span></p>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 mt-5 pt-4 border-t border-gray-100">
+              <button class="h-10 rounded-xl border border-gray-200 text-emerald-500 hover:bg-emerald-50 transition"><i class="fa-solid fa-pen"></i></button>
+              <button class="h-10 rounded-xl border border-gray-200 text-gray-500 hover:bg-gray-50 transition"><i class="fa-solid fa-gear"></i></button>
+              <button class="h-10 rounded-xl border border-gray-200 text-red-500 hover:bg-red-50 transition"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 hover:shadow-md transition">
+            <div class="flex items-start justify-between gap-4">
+              <div class="min-w-0">
+                <h3 class="font-bold text-[#0F172A] truncate">فهد علي</h3>
+                <p class="text-sm text-emerald-600 mt-1">صيدلي</p>
+              </div>
+              <div class="shrink-0 w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold border border-emerald-100">ف</div>
+            </div>
+
+            <div class="mt-5 space-y-3 text-sm text-gray-600">
+              <p class="flex items-center gap-2 min-w-0"><i class="fa-regular fa-envelope text-gray-400"></i><span class="truncate">fahad.ali@clinic.com</span></p>
+              <p class="flex items-center gap-2"><i class="fa-solid fa-phone text-gray-400"></i><span>0551234568</span></p>
+              <p class="flex items-center gap-2 text-gray-400"><i class="fa-solid fa-shield-halved"></i><span>صلاحيات الصيدلية</span></p>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 mt-5 pt-4 border-t border-gray-100">
+              <button class="h-10 rounded-xl border border-gray-200 text-emerald-500 hover:bg-emerald-50 transition"><i class="fa-solid fa-pen"></i></button>
+              <button class="h-10 rounded-xl border border-gray-200 text-gray-500 hover:bg-gray-50 transition"><i class="fa-solid fa-gear"></i></button>
+              <button class="h-10 rounded-xl border border-gray-200 text-red-500 hover:bg-red-50 transition"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </article>
+        </div>
+      </section>
     </main>
 
     <script src="../public/js/script_join.js"></script>
+
+    <script>
+      const sidebar = document.getElementById("sidebar");
+      const topbar = document.getElementById("topbar");
+      const content = document.getElementById("content");
+      const overlay = document.getElementById("sidebarOverlay");
+
+      function isMobileScreen() {
+        return window.innerWidth <= 1024;
+      }
+
+      function toggleSidebar() {
+        if (isMobileScreen()) {
+          toggleMobileSidebar();
+          return;
+        }
+
+        sidebar.classList.toggle("closed");
+        topbar.classList.toggle("sidebar-closed");
+        content.classList.toggle("sidebar-closed");
+      }
+
+      function toggleMobileSidebar() {
+        sidebar.classList.add("mobile-open");
+        overlay.classList.add("show");
+      }
+
+      function closeMobileSidebar() {
+        sidebar.classList.remove("mobile-open");
+        overlay.classList.remove("show");
+      }
+
+      window.addEventListener("resize", () => {
+        if (!isMobileScreen()) {
+          sidebar.classList.remove("mobile-open");
+          overlay.classList.remove("show");
+        }
+      });
+    </script>
   </body>
 </html>

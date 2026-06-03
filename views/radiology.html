@@ -5,172 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>عيادة طبية - الأشعة</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome CDN -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="../public/css/style_join.css" />
+    <style>
+      /* إلغاء نظام السايدبار الثابت/المتحرك داخل هذه الصفحة فقط */
+      #sidebarToggleBtn{display:none!important}
+      #sidebar{width:265px!important;right:0!important;transform:none!important}
+      #topbar{right:265px!important;left:0!important;width:auto!important}
+      #content{margin-right:265px!important;padding:112px 24px 40px!important;width:auto!important}
+      @media (max-width: 1024px){
+        #topbar{right:0!important;padding-inline:16px!important}
+        #content{margin-right:0!important;padding:100px 16px 32px!important}
+        #sidebar{transform:translateX(100%)!important}
+        #sidebar.mobile-open{transform:translateX(0)!important}
+      }
+      .soft-card{background:#fff;border:1px solid #eef2f7;border-radius:18px;box-shadow:0 6px 18px rgba(15,23,42,.04)}
+    </style>
   </head>
-
   <body class="bg-[#F5F7FB] text-[#0F172A]">
-    <!-- القائمة الجانبية -->
-    <!-- Sidebar -->
-    <aside
-      id="sidebar"
-      class="sidebar fixed right-0 top-0 h-screen w-[265px] bg-white border-l border-gray-200 shadow-sm z-50 overflow-y-auto"
-    >
-      <!-- Logo -->
+    <aside id="sidebar" class="sidebar fixed right-0 top-0 h-screen w-[265px] bg-white border-l border-gray-200 shadow-sm z-50 overflow-y-auto">
       <div class="h-[92px] flex items-center justify-between px-5 border-b">
         <div class="flex items-center gap-3">
-          <div
-            class="logo rounded-xl bg-[#494BE1] flex items-center justify-center text-white text-xl"
-          >
-            <i class="fa-solid fa-stethoscope"></i>
-          </div>
-
-          <div class="logo-text">
-            <h2 class="font-bold text-lg">عيادة طبية</h2>
-            <p class="text-sm text-[#AEAEAF]">Clinic Pro</p>
-          </div>
+          <div class="logo rounded-xl bg-[#494BE1] flex items-center justify-center text-white text-xl"><i class="fa-solid fa-stethoscope"></i></div>
+          <div class="logo-text"><h2 class="font-bold text-lg">عيادة طبية</h2><p class="text-sm text-[#AEAEAF]">Clinic Pro</p></div>
         </div>
       </div>
-
-      <!-- Toggle Button -->
-      <button
-        id="sidebarToggleBtn"
-        onclick="toggleSidebar()"
-        class="sidebar-toggle-btn absolute -left-3 top-[76px] w-8 h-8 rounded-full bg-white border shadow flex items-center justify-center text-gray-500 z-[60]"
-      >
-        <i id="sidebarToggleIcon" class="fa-solid fa-angle-right"></i>
-      </button>
-
-      <!-- Menu -->
+      <button id="sidebarToggleBtn" onclick="toggleSidebar()" class="sidebar-toggle-btn absolute -left-3 top-[76px] w-8 h-8 rounded-full bg-white border shadow flex items-center justify-center text-gray-500 z-[60]"><i id="sidebarToggleIcon" class="fa-solid fa-angle-right"></i></button>
       <nav class="p-4 space-y-3">
-        <a
-          href="control_panel.html"
-          class="menu-link"
-        >
-          <span class="text-xl"><i class="fa-solid fa-layer-group"></i></span>
-          <span class="menu-text font-semibold">لوحة التحكم</span>
-        </a>
-
-        <a href="patients.html" class="menu-link ">
-          <span class="text-xl"><i class="fa-solid fa-user-group"></i></span>
-          <span class="menu-text">المرضى</span>
-        </a>
-
-        <a href="appointments.html" class="menu-link ">
-          <span class="text-xl"><i class="fa-regular fa-calendar"></i></span>
-          <span class="menu-text">المواعيد</span>
-        </a>
-
-        <a href="visits.html" class="menu-link">
-          <span class="text-xl"><i class="fa-solid fa-stethoscope"></i></span>
-          <span class="menu-text">الزيارات</span>
-        </a>
-
-        <a href="invoices.html" class="menu-link ">
-          <span class="text-xl"><i class="fa-solid fa-sack-dollar"></i></span>
-          <span class="menu-text">الفواتير</span>
-        </a>
-
-        <a href="pharmacy.html" class="menu-link ">
-          <span class="text-xl"><i class="fa-solid fa-capsules"></i></span>
-          <span class="menu-text">الصيدلية</span>
-        </a>
-
-        <a href="laboratory.html" class="menu-link ">
-          <span class="text-xl"><i class="fa-solid fa-flask"></i></span>
-          <span class="menu-text">المختبر</span>
-        </a>
-
-        <a href="radiology.html" class="menu-link text-white bg-gradient-to-r from-[#818CF8] via-[#4F46E5] to-[#4338CA]">
-          <span class="text-xl"><i class="fa-solid fa-x-ray"></i></span>
-          <span class="menu-text">الأشعة</span>
-        </a>
-
-        <a href="users.html" class="menu-link">
-          <span class="text-xl"><i class="fa-solid fa-user-gear"></i></span>
-          <span class="menu-text">المستخدمين</span>
-        </a>
-
-        <a href="settings.html" class="menu-link">
-          <span class="text-xl"><i class="fa-solid fa-gear"></i></span>
-          <span class="menu-text">الإعدادات</span>
-        </a>
+        <a href="control_panel.html" class="menu-link"><span class="text-xl"><i class="fa-solid fa-layer-group"></i></span><span class="menu-text font-semibold">لوحة التحكم</span></a>
+        <a href="patients.html" class="menu-link"><span class="text-xl"><i class="fa-solid fa-user-group"></i></span><span class="menu-text">المرضى</span></a>
+        <a href="appointments.html" class="menu-link"><span class="text-xl"><i class="fa-regular fa-calendar"></i></span><span class="menu-text">المواعيد</span></a>
+        <a href="visits.html" class="menu-link"><span class="text-xl"><i class="fa-solid fa-stethoscope"></i></span><span class="menu-text">الزيارات</span></a>
+        <a href="invoices.html" class="menu-link"><span class="text-xl"><i class="fa-solid fa-sack-dollar"></i></span><span class="menu-text">الفواتير</span></a>
+        <a href="pharmacy.html" class="menu-link"><span class="text-xl"><i class="fa-solid fa-capsules"></i></span><span class="menu-text">الصيدلية</span></a>
+        <a href="laboratory.html" class="menu-link"><span class="text-xl"><i class="fa-solid fa-flask"></i></span><span class="menu-text">المختبر</span></a>
+        <a href="radiology.html" class="menu-link text-white bg-gradient-to-r from-[#818CF8] via-[#4F46E5] to-[#4338CA]"><span class="text-xl"><i class="fa-solid fa-x-ray"></i></span><span class="menu-text">الأشعة</span></a>
+        <a href="users.html" class="menu-link"><span class="text-xl"><i class="fa-solid fa-user-gear"></i></span><span class="menu-text">المستخدمين</span></a>
+        <a href="settings.html" class="menu-link"><span class="text-xl"><i class="fa-solid fa-gear"></i></span><span class="menu-text">الإعدادات</span></a>
       </nav>
     </aside>
-    <div
-      id="sidebarOverlay"
-      class="sidebar-overlay"
-      onclick="closeMobileSidebar()"
-    ></div>
+    <div id="sidebarOverlay" class="sidebar-overlay" onclick="closeMobileSidebar()"></div>
 
-    <!-- القائمة العلوية -->
-    <header
-      id="topbar"
-      class="main fixed top-0 left-0 right-[265px] h-[80px] bg-white border-b border-gray-200 flex items-center justify-between px-8 z-40"
-    >
-      <button
-        id="mobileMenuBtn"
-        onclick="toggleMobileSidebar()"
-        class="mobile-menu-btn"
-      >
-        <i class="fa-solid fa-bars"></i>
-      </button>
-      <!-- جهة اليمين -->
-      <div class="w-[520px]">
-        <div class="relative">
-          <input
-            type="text"
-            placeholder="بحث عن مريض، موعد، أو فاتورة..."
-            class="w-full rounded-xl p-3 pr-12 bg-[#F0F5FF] outline-none text-gray-500 border-2 border-transparent focus:bg-white focus:border-[#F0F5FF] transition-all duration-300"
-          />
-
-          <span
-            class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl"
-          >
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </span>
-        </div>
-      </div>
-
-      <!-- جهة اليسار -->
-      <div class="flex items-center gap-6">
-        <div class="relative">
-          <button class="text-1xl text-gray-500">
-            <i class="fa-regular fa-bell"></i>
-          </button>
-          <span
-            class="absolute -top-2 -right-2 bg-[#5B7FE8] text-white text-xs w-4 h-4 rounded-full flex items-center justify-center"
-          >
-            2
-          </span>
-        </div>
-
-        <div class="h-10 w-px bg-gray-200"></div>
-
-        <a
-          href="login.html"
-          class="profile-link flex items-center gap-3 cursor-pointer"
-        >
-          <img src="https://i.pravatar.cc/60" class="w-10 h-10 rounded-full" />
-
-          <div class="user-login hidden lg:block">
-            <h3 class="font-medium">د. أحمد محمد</h3>
-            <p class="text-sm text-gray-500">مدير النظام</p>
-          </div>
-        </a>
-      </div>
+    <header id="topbar" class="main fixed top-0 left-0 right-[265px] h-[80px] bg-white border-b border-gray-200 flex items-center justify-between px-8 z-40">
+      <button id="mobileMenuBtn" onclick="toggleMobileSidebar()" class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+      <div class="w-[520px] max-w-[60vw]"><div class="relative"><input type="text" placeholder="بحث عن مريض، موعد، أو فاتورة..." class="w-full rounded-xl p-3 pr-12 bg-[#F0F5FF] outline-none text-gray-500 border-2 border-transparent focus:bg-white focus:border-[#F0F5FF] transition-all duration-300" /><span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl"><i class="fa-solid fa-magnifying-glass"></i></span></div></div>
+      <div class="flex items-center gap-6"><div class="relative"><button class="text-1xl text-gray-500"><i class="fa-regular fa-bell"></i></button><span class="absolute -top-2 -right-2 bg-[#5B7FE8] text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">2</span></div><div class="h-10 w-px bg-gray-200"></div><a href="login.html" class="profile-link flex items-center gap-3 cursor-pointer"><img src="https://i.pravatar.cc/60" class="w-10 h-10 rounded-full" /><div class="user-login hidden lg:block"><h3 class="font-medium">د. أحمد محمد</h3><p class="text-sm text-gray-500">مدير النظام</p></div></a></div>
     </header>
 
-    <!-- المحتوى -->
-    <main id="content" class="main pt-[120px] pr-[310px] px-8">
-      <h1 class="text-4xl font-bold">الأشعة</h1>
-      <p class="text-gray-500 mt-3">مرحباً بك في نظام إدارة العيادة</p>
-    </main>
+    <main id="content">
+      <section class="max-w-[1180px] mx-auto space-y-4">
+        <div class="flex items-center justify-between gap-4">
+          <div>
+            <h1 class="text-2xl sm:text-3xl font-bold">الأشعة</h1>
+            <p class="text-sm text-gray-400 mt-1">إدارة طلبات الأشعة وتقاريرها</p>
+          </div>
+          <button class="h-10 px-5 rounded-xl bg-[#4F46E5] text-white text-sm font-semibold shadow-sm hover:bg-[#4338CA] transition"><i class="fa-solid fa-plus ml-1"></i> طلب جديد</button>
+        </div>
 
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+          <div class="soft-card p-5 flex items-center justify-between"><div><p class="text-sm text-gray-500">إجمالي الطلبات</p><h3 class="text-xl font-bold mt-2">4</h3></div><div class="w-11 h-11 rounded-xl bg-indigo-100 text-indigo-500 flex items-center justify-center"><i class="fa-solid fa-x-ray"></i></div></div>
+          <div class="soft-card p-5 flex items-center justify-between"><div><p class="text-sm text-gray-500">معلق</p><h3 class="text-xl font-bold text-indigo-600 mt-2">1</h3></div><div class="w-11 h-11 rounded-xl bg-blue-100 text-blue-500 flex items-center justify-center"><i class="fa-regular fa-clock"></i></div></div>
+          <div class="soft-card p-5 flex items-center justify-between"><div><p class="text-sm text-gray-500">قيد الفحص</p><h3 class="text-xl font-bold text-amber-500 mt-2">1</h3></div><div class="w-11 h-11 rounded-xl bg-amber-100 text-amber-500 flex items-center justify-center"><i class="fa-solid fa-hourglass-half"></i></div></div>
+          <div class="soft-card p-5 flex items-center justify-between"><div><p class="text-sm text-gray-500">مكتمل</p><h3 class="text-xl font-bold text-red-500 mt-2">2</h3></div><div class="w-11 h-11 rounded-xl bg-red-100 text-red-500 flex items-center justify-center"><i class="fa-solid fa-check"></i></div></div>
+        </div>
+
+        <div class="soft-card p-3"><div class="flex flex-wrap gap-2"><button class="px-8 py-2 rounded-xl bg-[#4F46E5] text-white text-sm">الكل</button><button class="px-5 py-2 rounded-xl border border-gray-200 text-gray-600 text-sm bg-white">قيد الانتظار</button><button class="px-5 py-2 rounded-xl border border-gray-200 text-gray-600 text-sm bg-white">مكتمل</button></div></div>
+
+        <div class="soft-card p-4"><div class="relative"><input type="text" placeholder="بحث عن مريض أو فحص..." class="w-full h-12 rounded-xl border border-gray-200 bg-white pr-11 px-4 outline-none text-sm focus:border-[#4F46E5] focus:ring-4 focus:ring-indigo-50"/><i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i></div></div>
+
+        <div class="space-y-4">
+          <article class="soft-card p-5">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+              <div class="flex items-start gap-3"><div class="w-12 h-12 rounded-xl bg-blue-100"></div><div><h3 class="font-bold">أشعة سينية (X-Ray)</h3><p class="text-xs text-gray-400 mt-1">محمد عبد الله | 22/2/2026</p><div class="flex flex-wrap items-center gap-2 mt-3"><span class="px-3 py-1 rounded-full bg-green-100 text-green-600 text-xs">عادي</span><span class="px-3 py-1 rounded-full bg-blue-100 text-blue-600 text-xs">الصدر</span></div></div></div>
+              <div class="flex items-center gap-2"><span class="px-3 py-1 rounded-full bg-blue-100 text-blue-600 text-xs">معلق</span><button class="px-4 py-2 rounded-xl bg-[#4F46E5] text-white text-sm">بدء الفحص</button></div>
+            </div>
+            <div class="bg-[#F8FAFC] rounded-xl p-4 mt-4 text-sm"><p class="font-medium mb-1">سبب الفحص</p><p class="text-gray-500">ألم في الصدر</p></div>
+            <div class="flex flex-wrap gap-4 mt-4 text-xs text-gray-500"><span><i class="fa-regular fa-eye ml-1 text-indigo-500"></i> عرض</span><span>تحميل التقرير</span><span>الصور</span></div>
+          </article>
+
+          <article class="soft-card p-5">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+              <div class="flex items-start gap-3"><div class="w-12 h-12 rounded-xl bg-amber-100"></div><div><h3 class="font-bold">سونار (Ultrasound)</h3><p class="text-xs text-gray-400 mt-1">فاطمة محمد | 15/5/2026</p><div class="flex flex-wrap items-center gap-2 mt-3"><span class="px-3 py-1 rounded-full bg-green-100 text-green-600 text-xs">عادي</span><span class="px-3 py-1 rounded-full bg-amber-100 text-amber-600 text-xs">قيد الفحص</span></div></div></div>
+              <div class="flex items-center gap-2"><span class="px-3 py-1 rounded-full bg-amber-100 text-amber-600 text-xs">قيد الفحص</span><button class="px-4 py-2 rounded-xl bg-[#4F46E5] text-white text-sm">بدء الفحص</button></div>
+            </div>
+            <div class="bg-[#F8FAFC] rounded-xl p-4 mt-4 text-sm"><p class="font-medium mb-1">سبب الفحص</p><p class="text-gray-500">ألم في البطن</p></div>
+            <div class="flex flex-wrap gap-4 mt-4 text-xs text-gray-500"><span><i class="fa-regular fa-eye ml-1 text-indigo-500"></i> عرض</span><span>تحميل التقرير</span><span>الصور</span></div>
+          </article>
+
+          <article class="soft-card p-5">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4"><div class="flex items-start gap-3"><div class="w-12 h-12 rounded-xl bg-blue-100"></div><div><h3 class="font-bold">أشعة مقطعية (CT)</h3><p class="text-xs text-gray-400 mt-1">محمد عبد الله | 22/2/2026</p><div class="flex flex-wrap items-center gap-2 mt-3"><span class="px-3 py-1 rounded-full bg-green-100 text-green-600 text-xs">مكتمل</span><span class="px-3 py-1 rounded-full bg-blue-100 text-blue-600 text-xs">الدماغ</span></div></div></div><span class="px-3 py-1 rounded-full bg-green-100 text-green-600 text-xs h-fit">مكتمل</span></div>
+            <div class="bg-[#F8FAFC] rounded-xl p-4 mt-4 text-sm"><p class="font-medium mb-1">تقرير الفحص</p><p class="text-gray-500">لا توجد نتائج مقلقة.</p></div>
+            <div class="flex flex-wrap gap-4 mt-4 text-xs text-gray-500"><span><i class="fa-regular fa-eye ml-1 text-indigo-500"></i> عرض</span><span>تحميل التقرير</span><span>الصور</span></div>
+          </article>
+
+          <article class="soft-card p-5">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4"><div class="flex items-start gap-3"><div class="w-12 h-12 rounded-xl bg-blue-100"></div><div><h3 class="font-bold">رنين مغناطيسي (MRI)</h3><p class="text-xs text-gray-400 mt-1">فاطمة محمد | 22/2/2026</p><div class="flex flex-wrap items-center gap-2 mt-3"><span class="px-3 py-1 rounded-full bg-green-100 text-green-600 text-xs">مكتمل</span><span class="px-3 py-1 rounded-full bg-purple-100 text-purple-600 text-xs">العمود الفقري</span></div></div></div><span class="px-3 py-1 rounded-full bg-green-100 text-green-600 text-xs h-fit">مكتمل</span></div>
+            <div class="bg-[#F8FAFC] rounded-xl p-4 mt-4 text-sm"><p class="font-medium mb-1">تقرير الفحص</p><p class="text-gray-500">لا توجد نتائج مرضية.</p></div>
+            <div class="flex flex-wrap gap-4 mt-4 text-xs text-gray-500"><span><i class="fa-regular fa-eye ml-1 text-indigo-500"></i> عرض</span><span>تحميل التقرير</span><span>الصور</span></div>
+          </article>
+        </div>
+      </section>
+    </main>
     <script src="../public/js/script_join.js"></script>
   </body>
 </html>
